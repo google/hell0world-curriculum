@@ -21,3 +21,10 @@ All submissions, including submissions by project members, require review. We
 use GitHub pull requests for this purpose. Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
+
+## Open source headers
+
+hell0world's curriculum is released under the Apache open source license, so
+please be sure to add the relevant Apache license header (you can see existing)
+files in this repo for examples to any new HTML, JS, and CSS files you are
+adding in your pull request.
