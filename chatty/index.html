@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chatty</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-database.js"></script>
+		<script src="script.js"></script>
+	</head>
+	<body>
+
+		<!-- Chat log. -->
+		<!-- Chat username and message input. -->
+		<div id="chatBox" class="textarea" contenteditable></div> 
+		<form id="sendMessageForm">
+		  <input type="text" placeholder="Enter your username" id="usernameInput">
+		  <input type="text" placeholder="Enter your message" id="messageInput">
+		  <input type="submit" value="Send">
+		  <input type="reset" value="Login">
+		</form>
+
+		<!-- Code goes here! -->
+		<script>
+			// Save a reference to username <input> tag.
+			var usernameInput = document.getElementById('usernameInput');
+			var messageInput = document.getElementById('messageInput');
+			var sendMessageForm = document.getElementById('sendMessageForm');
+			var chatBox = document.getElementById('chatBox');
+
+			/**
+			 * Adds a chat message to be displayed in the chatBox.
+			 * 
+			 * @param chatBox {HTMLElement} Parent HTML node containing chat 
+			 *     messages
+			 * @param user {string} Name of user
+			 * @param messageText {string} Message from the user
+			 * @param isMine {boolean} Indicates if the message should be
+			 *     displayed as from the current user or someone else.
+			 */
+			function addChatMessage(chatBox, user, messageText, isMine) {
+				var chatLine = document.createElement('div');
+				chatBox.appendChild(chatLine);
+				var txt = document.createTextNode(user + ': ' + messageText);
+				chatLine.appendChild(txt);
+				chatLine.className = isMine ? 'my-message' : 'your-message';
+			}
+
+			// Bind form submission and send message to Firebase.
+			sendMessageForm.addEventListener('submit', function(e) {
+				// Suppress page reload.
+				e.preventDefault();
+
+				var username = usernameInput.value;
+				var message = messageInput.value;
+				sendMessage(username, message);
+
+				// Clear message input.
+				messageInput.value = '';
+			});
+
+			// Function to display a message from the username.
+			var messagesCallback = function(username, message) {
+				console.log('message from ' + username + ' saying: ' + message);
+			};
+			
+			// Fetch all the messages from Firebase. The messagesCallback is
+			// called for *every* message in firebase from the past and also for
+			// every new message.
+			getMessages(messagesCallback);
+			sendMessageForm.addEventListener('reset', function(e) {
+				// Suppress form clearing.
+				e.preventDefault();
+				
+				// Delete all current messages in chatBox.
+				while (chatBox.childElementCount > 0) {
+					chatBox.removeChild(chatBox.childNodes[0]);
+				}
+				reloadMessages(messagesCallback);
+			});
+		</script>
+	</body>
+</html>

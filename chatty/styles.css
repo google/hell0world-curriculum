@@ -1,0 +1,22 @@
+/* CSS styles go in here! */
+
+.textarea {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid gray;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    height: 200px;
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    width: 400px;
+}
+
+.my-message {
+    color: blue;
+}
+
+.your-message {
+    color: red;
+}
