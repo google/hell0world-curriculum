@@ -4,6 +4,8 @@ This is the open source curriculum for hell0world.org classes that are taught at
 [Heart of Los Angeles](https://www.heartofla.org/) and can also be pursued on a
 self-paced basis.
 
+This is not an officially supported Google product.
+
 ## Projects
 
 * Chatty
