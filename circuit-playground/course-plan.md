@@ -42,10 +42,7 @@ TODO(yozhipozhi)
 
 ### 1. Discuss event handling vs. polling.
 
-Polling: Khan academy/Processing style: mouseX
-Events: Event handlers here
-Mix of both: Slider: Event told us changed; then we poll it to get value.
-
-Looking ahead: Buttons (events) vs. Light sensor (polling)
-
-### 2. 
+* Polling: Khan academy/Processing style: mouseX
+* Events: Event handlers here
+* Mix of both: Slider: Event told us changed; then we poll it to get value.
+* Looking ahead: Buttons (events) vs. Light sensor (polling)
